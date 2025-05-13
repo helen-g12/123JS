@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
+  
+<head>
+  <meta charset="UTF-8" />
 
- <head>
-   <meta charset="UTF-8" />
-   <title>Yaong Yaong - Simulador de pedidos</title>
-
-    </head>
-
- <body>
-   <h1>Yaong Yaong </h1>
-   <p>
-     Bienvenido al simulador de pedidos de nuestro cat‑café.  
-     Desde la consola del navegador podrás elegir tu bebida, ver tu carrito
-     y calcular el total con descuentos “gatunos”.  
-     <br />
-     Abre la consola (F12) antes de comenzar para ver el detalle.
-   </p>
-
-   <script src="main.js"></script>
-  </body>
+  <title>Yaong Yaong – Simulador de pedidos</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
 
 
+
+<body>
+  <h1>Yaong Yaong 🐾</h1>
+  <p>Selecciona tu bebida, indica la cantidad y agrégala al carrito.</p>
+
+  <!-- Aquí se mostrará el menú -->
+  <section id="menu" class="grid"></section>
+
+  <!-- Botón para mostrar resumen -->
+  <button id="mostrarResumen">Mostrar resumen</button>
+
+  <!-- Carrito -->
+  <section id="carrito">
+    <h2>Resumen de tu pedido</h2>
+    <div id="carritoContenido"></div>
+    <div id="totales"></div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
