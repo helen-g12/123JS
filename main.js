@@ -1,12 +1,13 @@
 
 // Menú de bebidas gatunas
-const menuBebidas = [
-    { id: 1, nombre: "Cat‑puccino",     precio: 55 },
-    { id: 2, nombre: "Miau‑latte",      precio: 60 },
-    { id: 3, nombre: "Ginger Cat Tea",  precio: 45 },
-    { id: 4, nombre: "Whisker Mocha",   precio: 65 },
-  ];
-  
+let menuBebidas = [];
+
+fetch("js/productos.json")
+  .then(res => res.json())
+  .then(data => {
+    menuBebidas = data;
+    renderMenu();  
+  });
   // Carrito de compras
   let carrito = [];
   
@@ -36,7 +37,7 @@ const menuBebidas = [
 
     menuDiv.appendChild(card);
   });
-}
+  }
     function agregarAlCarrito(id) {
   const bebida = menuBebidas.find(b => b.id === id);
   const input = document.getElementById(`cant-${id}`);
@@ -52,7 +53,16 @@ const menuBebidas = [
   }
 
   localStorage.setItem("carritoYaong", JSON.stringify(carrito));
-}
+
+   Swal.fire({
+    title: "¡Bebida añadida!",
+    text: `${cantidad} × ${bebida.nombre}`,
+    icon: "success",
+    timer: 1500,
+    showConfirmButton: false
+  });
+  }
+
    function mostrarResumen() {
   carritoContenido.innerHTML = "";
   totalesDiv.innerHTML = "";
@@ -85,4 +95,25 @@ const menuBebidas = [
      mostrarResumenBtn.addEventListener("click", mostrarResumen);
 renderMenu();
 
+    document.getElementById("finalizarCompra").addEventListener("click", () => {
+  if (carrito.length === 0) {
+    Swal.fire("Tu carrito está vacío 😿");
+    return;
+  }
 
+  Swal.fire({
+    title: "¿Confirmar pedido?",
+    text: "Tu orden será enviada al universo gatuno",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Sí, confirmar",
+    cancelButtonText: "No, aún no"
+  }).then(result => {
+    if (result.isConfirmed) {
+      carrito = [];
+      localStorage.removeItem("carritoYaong");
+      renderCart(); // limpia pantalla
+      Swal.fire("¡Gracias por tu pedido! 😻", "", "success");
+    }
+  });
+});

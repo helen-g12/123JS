@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "Cat‑puccino", "precio": 55 },
+  { "id": 2, "nombre": "Miau‑latte", "precio": 60 },
+  { "id": 3, "nombre": "Ginger Cat Tea", "precio": 45 },
+  { "id": 4, "nombre": "Whisker Mocha", "precio": 65 }
+]
